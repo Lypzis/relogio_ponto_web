@@ -1,0 +1,73 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Relógio Ponto Web</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="hello">
+        <h1 class="header--1">{{ msg }}</h1>
+
+        <div id="registerBox" class="register-box">
+          <label for="nome" class="register-box__label">nome:</label>
+          <input
+            type="text"
+            name="nome"
+            id="nome"
+            class="register-box__input"
+          />
+          <button v-on:click="registrarUsuario" class="btn">
+            cadastrar usuário
+          </button>
+        </div>
+
+        <div v-for="usuario in usuarios" class="user-list">
+          <h3>{{ usuario.nome }}</h3>
+          <input type="text" v-model:value="usuario.nome" />
+          <div>
+            <input type="time" v-bind:id="usuario.uniq[0]" />
+            <input type="time" v-bind:id="usuario.uniq[1]" />
+            <button v-on:click="adicionarHorario(usuario)" class="btn">
+              adicionar horário
+            </button>
+          </div>
+          <ol v-if="usuario.horarios" class="user-list__list">
+            <li
+              v-for="horario in usuario.horarios"
+              class="user-list__list-item"
+            >
+              <input type="time" v-model="horario.entrada" />
+              <input type="time" v-model="horario.saida" />
+              <button
+                v-on:click="deletarHorario(usuario, horario)"
+                class="btn btn--danger"
+              >
+                delete
+              </button>
+            </li>
+          </ol>
+          <h4>
+            Carga Horária: {{usuario.cargaHoraria}}h
+          </h4>
+          <div class="button-box">
+            <button
+              v-on:click="deletarUsuario(usuario)"
+              class="btn btn--danger"
+            >
+              deletar usuário
+            </button>
+            <button v-on:click="calcularCargaHoraria(usuario)" class="btn">
+              Calcular Carga Horária
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--<button v-on:click="verifyUsers">debug</button>-->
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

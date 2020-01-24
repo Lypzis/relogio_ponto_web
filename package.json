@@ -1,0 +1,15 @@
+{
+  "name": "relogio_ponto_web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "serve "
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "serve": "^11.3.0"
+  }
+}
